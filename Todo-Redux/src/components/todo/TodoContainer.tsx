@@ -8,6 +8,7 @@ type TItem = {
   title: string;
   description: string;
   isCompleted?: boolean | undefined;
+  priority: string;
 };
 
 const TodoContainer = () => {
@@ -16,6 +17,8 @@ const TodoContainer = () => {
 
   //* From server
   const { data: todos, isLoading } = useGetTodosQuery(undefined);
+
+  console.log(todos);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -29,8 +32,8 @@ const TodoContainer = () => {
       </div>
       <div className="bg-primary-gradient w-full h-full rounded-xl p-[5px]">
         <div className="bg-white p-5 w-full h-full rounded-lg space-y-3">
-          {todos?.data?.map((item: TItem) => (
-            <TodoCard key={item.id} {...item} />
+          {todos?.data?.map((item: TItem, ind: string) => (
+            <TodoCard key={ind} {...item} />
           ))}
         </div>
         {/* <div className="bg-white text-2xl font-bold p-5 flex justify-center items-center rounded-md">
