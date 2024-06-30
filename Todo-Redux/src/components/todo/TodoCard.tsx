@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "../ui/button";
-import { removeTodo } from "@/redux/features/todoSlice";
-import { useUpdateTodoMutation } from "@/redux/api/api";
+import { useDeleteTodoMutation, useUpdateTodoMutation } from "@/redux/api/api";
 
 type TTodoCardProps = {
   _id: string;
@@ -20,7 +18,8 @@ const TodoCard = ({
 }: TTodoCardProps) => {
   // const dispatch = useAppDispatch();
 
-  const [updateTodo, { isLoading }] = useUpdateTodoMutation();
+  const [updateTodo] = useUpdateTodoMutation();
+  const [deleteTodo] = useDeleteTodoMutation();
 
   const toggleState = () => {
     // dispatch(toggleComplete(id));
@@ -71,7 +70,7 @@ const TodoCard = ({
       </div>
       <p className="flex-[2]">{description}</p>
       <div className="space-x-5">
-        <Button onClick={() => dispatch(removeTodo(id))} className="bg-red-500">
+        <Button onClick={() => deleteTodo(_id)} className="bg-red-500">
           <svg
             className="size-5"
             data-slot="icon"

@@ -5,7 +5,7 @@ import TodoFilter from "./TodoFilter";
 import { useGetTodosQuery } from "@/redux/api/api";
 
 type TItem = {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   isCompleted?: boolean | undefined;
