@@ -39,16 +39,21 @@ const TodoContainer = () => {
         <AddTodoModal />
         <TodoFilter priority={priority} setPriority={setPriority} />
       </div>
-      <div className="bg-primary-gradient w-full h-full rounded-xl p-[5px]">
-        <div className="bg-white p-5 w-full h-full rounded-lg space-y-3">
-          {sortedTodos.map((item: TItem, ind: string) => (
-            <TodoCard key={ind} {...item} />
-          ))}
+      {sortedTodos.length > 0 && (
+        <div className="bg-primary-gradient w-full h-full rounded-xl p-[5px]">
+          <div className="bg-white p-5 w-full h-full rounded-lg space-y-3">
+            {sortedTodos.map((item: TItem, ind: string) => (
+              <TodoCard key={ind} {...item} />
+            ))}
+          </div>
         </div>
-        {/* <div className="bg-white text-2xl font-bold p-5 flex justify-center items-center rounded-md">
-          <p>There is no task pending</p>
-        </div> */}
-      </div>
+      )}
+
+      {sortedTodos.length <= 0 && (
+        <div className="bg-white text-2xl font-bold p-5 flex justify-center items-center rounded-md">
+          <p className="text-3xl text-purple-600">There is no task pending</p>
+        </div>
+      )}
     </div>
   );
 };
