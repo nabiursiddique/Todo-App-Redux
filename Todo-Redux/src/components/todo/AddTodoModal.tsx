@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FormEvent, useState } from "react";
 import { Button } from "../ui/button";
 import {
@@ -33,10 +34,7 @@ const AddTodoModal = () => {
   //* For server
   //? [actualFunctionForPost,{data, isLoading, isError, isSuccess}]
 
-  const [addTodo, { data, isLoading, isError, isSuccess }] =
-    useAddTodoMutation();
-
-  console.log(data, isLoading, isError, isSuccess);
+  const [addTodo] = useAddTodoMutation();
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();

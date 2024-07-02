@@ -25,6 +25,14 @@ const TodoContainer = () => {
     return <p>Loading...</p>;
   }
 
+  //* Sort todos based on isCompleted status
+  // used slice to make the copy of the array
+  const sortedTodos = todos?.data?.slice().sort((a: TItem, b: TItem) => {
+    if (a.isCompleted === b.isCompleted) return 0;
+    if (a.isCompleted === true) return 1;
+    return -1;
+  });
+
   return (
     <div>
       <div className="flex justify-between mb-5">
@@ -33,7 +41,7 @@ const TodoContainer = () => {
       </div>
       <div className="bg-primary-gradient w-full h-full rounded-xl p-[5px]">
         <div className="bg-white p-5 w-full h-full rounded-lg space-y-3">
-          {todos?.data?.map((item: TItem, ind: string) => (
+          {sortedTodos.map((item: TItem, ind: string) => (
             <TodoCard key={ind} {...item} />
           ))}
         </div>
