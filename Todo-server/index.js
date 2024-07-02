@@ -9,7 +9,8 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-const uri = `mongodb://localhost:27017`;
+// const uri = `mongodb://localhost:27017`;
+const uri = process.env.DB_URL;
 
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
@@ -62,7 +63,7 @@ const run = async () => {
     // status update
     app.put('/task/:id', async (req, res) => {
       const id = req.params.id;
-      console.log(id);
+      // console.log(id);
       const task = req.body;
       const filter = { _id: ObjectId(id) };
       const updateDoc = {
